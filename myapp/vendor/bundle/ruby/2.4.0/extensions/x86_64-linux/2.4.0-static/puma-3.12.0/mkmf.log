@@ -1,0 +1,107 @@
+have_library: checking for BIO_read() in -lcrypto... -------------------- no
+
+"gcc -o conftest -I/opt/bitnami/ruby/include/ruby-2.4.0/x86_64-linux -I/opt/bitnami/ruby/include/ruby-2.4.0/ruby/backward -I/opt/bitnami/ruby/include/ruby-2.4.0 -I. -I/opt/bitnami/ruby/include   -s conftest.c  -L. -L/opt/bitnami/ruby/lib -Wl,-rpath,/opt/bitnami/ruby/lib -L. -Wl,-rpath=/opt/bitnami/ruby/lib -L/opt/bitnami/ruby/lib -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-rpath,/opt/bitnami/ruby/lib -L/opt/bitnami/ruby/lib -lruby-static  -lpthread -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"gcc -o conftest -I/opt/bitnami/ruby/include/ruby-2.4.0/x86_64-linux -I/opt/bitnami/ruby/include/ruby-2.4.0/ruby/backward -I/opt/bitnami/ruby/include/ruby-2.4.0 -I. -I/opt/bitnami/ruby/include   -s conftest.c  -L. -L/opt/bitnami/ruby/lib -Wl,-rpath,/opt/bitnami/ruby/lib -L. -Wl,-rpath=/opt/bitnami/ruby/lib -L/opt/bitnami/ruby/lib -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-rpath,/opt/bitnami/ruby/lib -L/opt/bitnami/ruby/lib -lruby-static -lcrypto  -lpthread -ldl -lcrypt -lm   -lc"
+conftest.c: In function 't':
+conftest.c:13:57: error: 'BIO_read' undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))BIO_read; return !p; }
+                                                         ^~~~~~~~
+conftest.c:13:57: note: each undeclared identifier is reported only once for each function it appears in
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))BIO_read; return !p; }
+/* end */
+
+"gcc -o conftest -I/opt/bitnami/ruby/include/ruby-2.4.0/x86_64-linux -I/opt/bitnami/ruby/include/ruby-2.4.0/ruby/backward -I/opt/bitnami/ruby/include/ruby-2.4.0 -I. -I/opt/bitnami/ruby/include   -s conftest.c  -L. -L/opt/bitnami/ruby/lib -Wl,-rpath,/opt/bitnami/ruby/lib -L. -Wl,-rpath=/opt/bitnami/ruby/lib -L/opt/bitnami/ruby/lib -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-rpath,/opt/bitnami/ruby/lib -L/opt/bitnami/ruby/lib -lruby-static -lcrypto  -lpthread -ldl -lcrypt -lm   -lc"
+/usr/bin/ld: cannot find -lcrypto
+collect2: error: ld returned 1 exit status
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: extern void BIO_read();
+14: int t(void) { BIO_read(); return 0; }
+/* end */
+
+--------------------
+
+have_library: checking for BIO_read() in -llibeay32... -------------------- no
+
+"gcc -o conftest -I/opt/bitnami/ruby/include/ruby-2.4.0/x86_64-linux -I/opt/bitnami/ruby/include/ruby-2.4.0/ruby/backward -I/opt/bitnami/ruby/include/ruby-2.4.0 -I. -I/opt/bitnami/ruby/include   -s conftest.c  -L. -L/opt/bitnami/ruby/lib -Wl,-rpath,/opt/bitnami/ruby/lib -L. -Wl,-rpath=/opt/bitnami/ruby/lib -L/opt/bitnami/ruby/lib -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-rpath,/opt/bitnami/ruby/lib -L/opt/bitnami/ruby/lib -lruby-static -llibeay32  -lpthread -ldl -lcrypt -lm   -lc"
+conftest.c: In function 't':
+conftest.c:13:57: error: 'BIO_read' undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))BIO_read; return !p; }
+                                                         ^~~~~~~~
+conftest.c:13:57: note: each undeclared identifier is reported only once for each function it appears in
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))BIO_read; return !p; }
+/* end */
+
+"gcc -o conftest -I/opt/bitnami/ruby/include/ruby-2.4.0/x86_64-linux -I/opt/bitnami/ruby/include/ruby-2.4.0/ruby/backward -I/opt/bitnami/ruby/include/ruby-2.4.0 -I. -I/opt/bitnami/ruby/include   -s conftest.c  -L. -L/opt/bitnami/ruby/lib -Wl,-rpath,/opt/bitnami/ruby/lib -L. -Wl,-rpath=/opt/bitnami/ruby/lib -L/opt/bitnami/ruby/lib -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-rpath,/opt/bitnami/ruby/lib -L/opt/bitnami/ruby/lib -lruby-static -llibeay32  -lpthread -ldl -lcrypt -lm   -lc"
+/usr/bin/ld: cannot find -llibeay32
+collect2: error: ld returned 1 exit status
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: extern void BIO_read();
+14: int t(void) { BIO_read(); return 0; }
+/* end */
+
+--------------------
+

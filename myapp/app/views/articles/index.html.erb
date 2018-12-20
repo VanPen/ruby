@@ -1,0 +1,11 @@
+<h1 align="center">Files d'actualités</h1>
+
+<div align="center">
+  <% if session[:user_id] %>
+  <h1>Bienvenue <%= link_to @users.username, user_path(@users), class:"linked" %></h1>
+  <% end %>
+</div>
+<%= render 'article', obj: @articles %>
+<div align="center">
+  <%= will_paginate %>
+</div>
